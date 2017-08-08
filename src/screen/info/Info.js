@@ -9,10 +9,6 @@ export default class Info extends Component{
 
     static navigationOptions =({ navigation }) => ({
         title: 'Thông tin sản phẩm',
-        headerLeft: <TouchableOpacity onPress={()=>{navigation.navigate('DrawerOpen')}}>
-            <Text style={{marginLeft: 10}}>
-                <Icon name="bars" style={{color: "#2196F3", fontSize: 30}}/>
-            </Text></TouchableOpacity>,
         headerTitleStyle :{textAlign: 'center',alignSelf:'center'},
     });
 

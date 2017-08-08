@@ -11,10 +11,6 @@ class Soul extends Component{
 
     static navigationOptions =({ navigation }) => ({
         title: 'Hạt giống tâm hồn',
-        headerLeft: <TouchableOpacity onPress={()=>{navigation.navigate('DrawerOpen')}}>
-            <Text style={{marginLeft: 10}}>
-                <Icon name="bars" style={{color: "#2196F3", fontSize: 30}}/>
-            </Text></TouchableOpacity>,
         headerTitleStyle :{textAlign: 'center',alignSelf:'center', color: "#2196F3"},
     });
 
@@ -50,7 +46,7 @@ class Soul extends Component{
                     // console.log(11111111111111111);
                     for(var i = 0; i < len; i++){
                         // console.log(arr[i]);
-                        SqlService.insert('souls', ['id', 'title','content', 'views', 'isView'], [arr[i].id, arr[i].title, arr[i].content.replace(/<p>/g,'').replace(/<\/p>/g, '\n'), arr[i].views], false).then(res1=>{
+                        SqlService.insert('souls', ['id', 'title','content', 'views', 'isView'], [arr[i].id, arr[i].title, arr[i].content.replace(/<p>/g,'').replace(/<\/p>/g, '\n').replace(/\n\s+/mg, '\n').replace(/\n+/mg, '\n'), arr[i].views, false]).then(res1=>{
                             console.log(res1);
                         });
                         if(i==len - 1){
@@ -72,7 +68,7 @@ class Soul extends Component{
         this.setState({
             page: this.state.page + 1
         })
-        SqlService.select('souls', 'id, title', '', null, 'id DESC', [this.state.page*this.state.number_per_page, this.state.number_per_page]).then(res=>{
+        SqlService.select('souls', 'id, title, content, isView', '', null, 'id DESC', [this.state.page*this.state.number_per_page, this.state.number_per_page]).then(res=>{
             this.setState({
                 dataFlatlist: this.state.dataFlatlist.concat(res)
             })
@@ -95,9 +91,15 @@ class Soul extends Component{
 
                 renderItem={({item})=>
                     <TouchableOpacity onPress = {()=>{this.props.navigation.navigate('Detail_screen', {story_id: item.id, story_title: item.title.replace(/&#8230;/g,'...')})}}>
-                        <View style={{flexDirection:'column', flex: 1}}>
-                            <View style={{padding: 16, borderBottomWidth:1, borderBottomColor:'#ccc'}}>
-                                <Text style={{color: this.props.color, fontSize: this.props.fontSize}}>{item.title}</Text>
+                        <View style={{padding: 16, borderBottomWidth:1, borderBottomColor:'#ccc', flex:1}}>
+                            <View style={{flexDirection:'row'}}>
+                                <View style={{flex: 6, paddingRight: 12}}>
+                                    <Text style={{color: this.props.color, fontSize: this.props.fontSize}}>{item.title}</Text>
+                                    <Text>{item.content.slice(0, 120)}</Text>
+                                </View>
+                                <View style={{flexDirection:'row', flex: 1, justifyContent:'center', alignItems:'center'}}>
+                                    {item.isView == true ? <Text style={{fontSize:12}}>Đã xem</Text> : <Icon name="angle-right" style={{color: "#111", fontSize: 20}}/>}
+                                </View>
                             </View>
                         </View>
                     </TouchableOpacity>

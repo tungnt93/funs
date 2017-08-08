@@ -10,10 +10,6 @@ class Setting extends Component{
 
     static navigationOptions =({ navigation }) => ({
         title: 'Cài đặt',
-        headerLeft: <TouchableOpacity onPress={()=>{navigation.navigate('DrawerOpen')}}>
-            <Text style={{marginLeft: 10}}>
-                <Icon name="bars" style={{color: "#2196F3", fontSize: 30}}/>
-            </Text></TouchableOpacity>,
         headerTitleStyle :{textAlign: 'center',alignSelf:'center'},
     });
 
@@ -73,31 +69,31 @@ class Setting extends Component{
             <View style={{backgroundColor: this.props.bgColor, flex:1}}>
                 <View style={styles.row}>
                     <View style={{flex: 4, justifyContent:'center'}}>
-                        <Text style={{backgroundColor: this.props.bgColor, fontSize:20}}>Font chữ</Text>
+                        <Text style={{color: this.props.color, fontSize:20}}>Font chữ</Text>
                     </View>
 
                     <View style={{flex: 1, justifyContent:'center'}}>
                         <TouchableOpacity onPress={()=>{this.changeFontsize(1)}}>
-                            <Icon name="minus" style={styles.textStyle}/>
+                            <Icon name="minus" style={{color: this.props.color, fontSize:20}}/>
                         </TouchableOpacity>
                     </View>
 
                     <View style={{flex: 1, justifyContent:'center'}}>
-                        <Text style={{backgroundColor: this.props.bgColor, fontSize:20}}>
+                        <Text style={{color: this.props.color, fontSize:20}}>
                             {this.props.fontSize}
                         </Text>
                     </View>
 
                     <View style={{flex: 1, justifyContent:'center'}}>
                         <TouchableOpacity onPress={()=>{this.changeFontsize(2)}}>
-                            <Icon name="plus" style={{backgroundColor: this.props.bgColor, fontSize:20}}/>
+                            <Icon name="plus" style={{color: this.props.color, fontSize:20}}/>
                         </TouchableOpacity>
                     </View>
 
                 </View>
                 <View style={styles.row}>
                     <View style={{flex: 1, justifyContent:'center'}}>
-                        <Text style={{backgroundColor: this.props.bgColor, fontSize:20}}>Màu nền</Text>
+                        <Text style={{color: this.props.color, fontSize:20}}>Màu nền</Text>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent:'center'}}>
                         <View style={{flex: 1, flexDirection: 'row', justifyContent:'center'}}>
@@ -119,7 +115,7 @@ class Setting extends Component{
                 </View>
                 <View style={styles.row}>
                     <View style={{flex: 1, justifyContent:'center'}}>
-                        <Text style={{backgroundColor: this.props.bgColor, fontSize:20}}>Màu chữ</Text>
+                        <Text style={{color: this.props.color, fontSize:20}}>Màu chữ</Text>
                     </View>
                     <View style={{flex: 1, flexDirection: 'row', justifyContent:'center'}}>
                         <View style={{flex: 1, flexDirection: 'row', justifyContent:'center'}}>

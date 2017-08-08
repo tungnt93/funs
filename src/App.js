@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import SqlService from './providers/SqlService';
 import {View, Text} from 'react-native';
 import * as Progress from 'react-native-progress';
-import {SideMenu} from './Router';
+import {FunTabbar} from './Router';
 import store  from './redux/store';
 import { Provider } from 'react-redux';
 
@@ -30,7 +30,14 @@ export default class App extends Component{
                        var arr = responseData.data.funs;
                        var len = arr.length;
                        for(var i = 0; i < len; i++){
-                           SqlService.insert('stories', ['id', 'title','content', 'views', 'isView'], [arr[i].id, arr[i].title, arr[i].content.replace(/<p>/g,'').replace(/<\/p>/g, '\n'), arr[i].views, false]).then(res2=>{
+                           SqlService.insert('stories', ['id', 'title','content', 'views', 'isView'],
+                               [
+                                   arr[i].id,
+                                   arr[i].title,
+                                   arr[i].content.replace(/<p>/g,'').replace(/<\/p>/g, '\n').replace(/\n\s+/mg, '\n').replace(/\n+/mg, '\n'),
+                                   arr[i].views,
+                                   false
+                               ]).then(res2=>{
                                console.log(res2);
                            });
                            if(i == len - 1){
@@ -56,7 +63,14 @@ export default class App extends Component{
                         var arr = responseData.data.souls;
                         var len = arr.length;
                         for(var i = 0; i < len; i++){
-                            SqlService.insert('souls', ['id', 'title','content', 'views', 'isView'], [arr[i].id, arr[i].title, arr[i].content.replace(/<p>/g,'').replace(/<\/p>/g, '\n'), arr[i].views, false]).then(res2=>{
+                            SqlService.insert('souls', ['id', 'title','content', 'views', 'isView'],
+                                [
+                                    arr[i].id,
+                                    arr[i].title,
+                                    arr[i].content.replace(/<p>/g,'').replace(/<\/p>/g, '\n').replace(/\n\s+/mg, '\n').replace(/\n+/mg, '\n'),
+                                    arr[i].views,
+                                    false
+                                ]).then(res2=>{
                                 // console.log(res2);
                             });
                             if(i == len - 1){
@@ -109,7 +123,7 @@ export default class App extends Component{
         if(this.state.loadDone == 3) {
             return (
                 <Provider store={store}>
-                    <SideMenu/>
+                    <FunTabbar/>
                 </Provider>
             );
         }

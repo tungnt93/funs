@@ -29,21 +29,24 @@ export const HomeStack = StackNavigator({
     }
 });
 
-export const TopViewStack = StackNavigator({
-    TopView_screen: {
-       screen: TopView
+export const SoulStack = StackNavigator({
+    Soul_screen: {
+       screen: Soul
     },
     Detail_screen: {
-        screen: Detail
+        screen: SoulDetail
     }
 });
 
-export const RandomStack = StackNavigator({
-    Random_screen: {
-       screen: Random
-    },
-    Detail_screen: {
-        screen: Detail
+export const SettingStack = StackNavigator({
+    Setting_screen: {
+       screen: Setting
+    }
+});
+
+export const InfoStack = StackNavigator({
+    Info_screen: {
+        screen: Info
     }
 });
 
@@ -51,103 +54,36 @@ export const FunTabbar = TabNavigator({
     Home: {
         screen: HomeStack,
         navigationOptions:{
-            tabBarLabel:'Mới nhất',
-            tabBarIcon: ({ tintColor }) => (
-                <Icon name="list-ul" style={{color: "#2196F3", fontSize: 25}}/>
+            tabBarLabel:'Truyện cười',
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Icon name="smile-o" style={{color: focused ? "#0080FD" : '#686868', fontSize: 25}}/>
             )
         }
     },
-    TopView: {
-        screen: TopViewStack,
-        navigationOptions:{
-            tabBarLabel:'Xem nhiều',
-            tabBarIcon: ({ tintColor }) => (
-                <Icon name="eye" style={{color: "#2196F3", fontSize: 25}}/>
-            )
-        }
-    },
-    Random:{
-        screen: RandomStack,
-        navigationOptions:{
-            tabBarLabel:'Ngẫu nhiên',
-            tabBarIcon: ({ tintColor }) => (
-                <Icon name="random" style={{color: "#2196F3", fontSize: 25}}/>
-            )
-        }
-    }
-},{
-    tabBarPosition: 'bottom',
-    tabBarOptions:{
-        showIcon: true,
-        labelStyle: {
-            fontSize: 10,
-            color: "#2196F3"
-        },
-        style: {
-            backgroundColor: '#fff',
-            borderTopWidth: 1,
-            borderColor: '#ccc'
-        },
-        upperCaseLabel: false,
-        indicatorStyle:{
-            borderBottomColor: '#2196F3',
-            borderBottomWidth: 3,
-        }
-    }
-});
-export const SoulStack = StackNavigator({
-    Home_screen: {
-        screen: Soul
-    },
-
-    Detail_screen: {
-        screen: SoulDetail
-    }
-});
-
-export const SoulTopViewStack = StackNavigator({
-    TopView_screen: {
-        screen: SoulTopView
-    },
-    Detail_screen: {
-        screen: SoulDetail
-    }
-});
-
-export const SoulRandomStack = StackNavigator({
-    Random_screen: {
-        screen: SoulRandom
-    },
-    Detail_screen: {
-        screen: SoulDetail
-    }
-});
-
-export const SoulMenu = TabNavigator({
-    Home: {
+    Soul: {
         screen: SoulStack,
         navigationOptions:{
-            tabBarLabel:'Mới nhất',
-            tabBarIcon: ({ tintColor }) => (
-                <Icon name="list-ul" style={{color: "#2196F3", fontSize: 25}}/>
+            tabBarLabel:'Tâm hồn',
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Icon name="leaf" style={{color: focused ? "#0080FD" : '#686868', fontSize: 25}}/>
             )
         }
     },
-    TopView: {
-        screen: SoulTopViewStack,
+    Setting:{
+        screen: SettingStack,
         navigationOptions:{
-            tabBarLabel:'Xem nhiều',
-            tabBarIcon: ({ tintColor }) => (
-                <Icon name="eye" style={{color: "#2196F3", fontSize: 25}}/>
+            tabBarLabel:'Cài đặt',
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Icon name="cog" style={{color: focused ? "#0080FD" : '#686868', fontSize: 25}}/>
             )
         }
     },
-    Random:{
-        screen: SoulRandomStack,
+    Info:{
+        screen: InfoStack,
         navigationOptions:{
-            tabBarLabel:'Ngẫu nhiên',
-            tabBarIcon: ({ tintColor }) => (
-                <Icon name="random" style={{color: "#2196F3", fontSize: 25}}/>
+            tabBarLabel:'Thông tin',
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Icon name="info-circle" style={{color: focused ? "#0080FD" : '#686868', fontSize: 25}}/>
             )
         }
     }
@@ -155,61 +91,21 @@ export const SoulMenu = TabNavigator({
     tabBarPosition: 'bottom',
     tabBarOptions:{
         showIcon: true,
-        labelStyle: {
-            fontSize: 10,
-            color: "#2196F3"
+        labelStyle:{
+            fontSize: 10
         },
+        activeTintColor: '#0080FD',
+        inactiveTintColor: '#686868',
         style: {
-            backgroundColor: '#fff',
+            backgroundColor: '#f9f9f9',
             borderTopWidth: 1,
-            borderColor: '#ccc'
+            borderColor: '#ccc',
+            height: 62
         },
         upperCaseLabel: false,
         indicatorStyle:{
-            borderBottomColor: '#2196F3',
-            borderBottomWidth: 3,
+            borderBottomColor: '#f9f9f9',
+            borderBottomWidth: 1,
         }
     }
-});
-// export const SoulMenu = TabNavigator({
-//     Soul:{
-//         screen: Soul
-//     },
-//     Detail:{
-//         screen: Soul_detail
-//     }
-// });
-
-export const SettingMenu = StackNavigator({
-    Setting:{
-        screen: Setting
-    }
-});
-
-export const InfoMenu = StackNavigator({
-    Info:{
-        screen: Info
-    }
-});
-
-export const SideMenu = DrawerNavigator({
-    FunTabbar: {
-        screen: FunTabbar
-    },
-    SoulMenu: {
-        screen: SoulMenu
-    },
-    SettingMenu:{
-        screen: SettingMenu
-    },
-    InfoMenu:{
-        screen: InfoMenu
-    }
-
-},
-{
-    drawerWidth: 300,
-    drawerPosition: 'left',
-    contentComponent: props => <Menu {...props} />
-
 });
